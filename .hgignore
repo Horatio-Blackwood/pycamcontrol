@@ -1,0 +1,6 @@
+syntax: glob
+*.pyc
+*.pyo
+./samples/*
+*.spyderproject
+./control/__pycache__/*
