@@ -5,15 +5,54 @@
 from camstate import CamState
 from orbitwebcam import OrbitWebcam
 from orbitwebcam import LED_ON
+from orbitwebcam import LED_OFF
+from orbitwebcam import LED_BLINK
+import time
+
+
+def orbitTest(camstate):
+    print("Basic Orbit Webcam Test")
+    print("Initializing Orbit Webcam object...")
+    orbit = OrbitWebcam(debug=False)
+    print("Initialized.  ", orbit)
+
+    print(" --- Reset Tilt ---------------- ")
+    orbit.resetTilt(camstate)
+    print(camstate)
+    time.sleep(5)
+    print("-------------------------------------- \n")
+
+    print(" --- Reset Pan ---------------- ")
+    orbit.resetPan(camstate)
+    print(camstate)
+    time.sleep(5)
+    print("-------------------------------------- \n")
+
+    print(" --- Testing LED Mode ---------------- ")
+    print(" --- LED On ---")
+    orbit.ledMode(camstate, LED_ON)
+    print(camstate)
+    time.sleep(5)
+    print("------------------\n")
+
+    print(" --- LED Blink --- ")
+    orbit.ledMode(camstate, LED_BLINK)
+    print(camstate)
+    time.sleep(5)
+    print("------------------\n")
+
+    print(" --- LED Off ---- ")
+    orbit.ledMode(camstate, LED_OFF)
+    print(camstate)
+    time.sleep(5)
+    print("------------------\n")
+    print("-------------------------------------- \n")
 
 
 def main():
     cs = CamState.new()
-    print(cs)
-    
-    orbit = OrbitWebcam(debug=True)
-    print(orbit)
-    
-    orbit.ledMode(cs, LED_ON)
+    print("Initializing new CamState.")
+    print(cs)    
+    orbitTest(cs)
 
 main()

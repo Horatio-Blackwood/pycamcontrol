@@ -7,10 +7,10 @@ from pycc import UVCDYNCTRL_LOC
 from pycc import printProcessResult
 
 # The text for the relative tilt command.
-TILT_COMMAND = "Tilt (relative)"
+TILT_REL = "Tilt (relative)"
 
 # The text for the relative pan command.
-PAN_COMMAND = "Pan (relative)"
+PAN_REL = "Pan (relative)"
 
 # The text for the Pan Reset command.
 PAN_RESET = "Pan Reset"
@@ -46,7 +46,7 @@ class OrbitWebcam(object):
         self.debug = debug
         
 		
-    def tiltUp(self, camState, amount):
+    def tiltUpRelative(self, camState, amount):
         """ Tilts the camera up.
         """
         amt = amount * -1
@@ -56,12 +56,12 @@ class OrbitWebcam(object):
         else:
             camState.tilt = camState.tilt - amount
 
-        result = subprocess.Popen([UVCDYNCTRL_LOC, "-s", TILT_COMMAND, "--", str(amt)], stdout=subprocess.PIPE)
+        result = subprocess.Popen([UVCDYNCTRL_LOC, "-s", TILT_REL, "--", str(amt)], stdout=subprocess.PIPE)
         if (self.debug):
             printProcessResult("Tilting up", result)
 		
 
-    def tiltDown(self, camState, amount):
+    def tiltDownRelative(self, camState, amount):
         """ Tilts the camera down.
         """
         amt = amount
@@ -71,13 +71,13 @@ class OrbitWebcam(object):
         else:
             camState.tilt = camState.tilt + amount
              
-        result = subprocess.Popen([UVCDYNCTRL_LOC, "-s", TILT_COMMAND, "--", str(amt)], stdout=subprocess.PIPE)
+        result = subprocess.Popen([UVCDYNCTRL_LOC, "-s", TILT_REL, "--", str(amt)], stdout=subprocess.PIPE)
         
         if (self.debug):
             printProcessResult("Tilting down", result)
 
 
-    def panLeft(self, camState, amount):
+    def panLeftRelative(self, camState, amount):
         """ Pans the camera left.
         """
         amt = amount
@@ -87,11 +87,11 @@ class OrbitWebcam(object):
         else:
             camState.pan = camState.pan + amount
 
-        result = subprocess.Popen([UVCDYNCTRL_LOC, "-s", PAN_COMMAND, "--", str(amt)], stdout=subprocess.PIPE)
+        result = subprocess.Popen([UVCDYNCTRL_LOC, "-s", PAN_REL, "--", str(amt)], stdout=subprocess.PIPE)
         if (self.debug):
             printProcessResult("Panning left", result)
 
-    def panRight(self, camState, amount):
+    def panRightRelative(self, camState, amount):
         """ Pans the camera right.
         """
         amt = amount * -1
@@ -101,7 +101,7 @@ class OrbitWebcam(object):
         else:
             camState.pan = camState.pan + amount
 
-        result = subprocess.Popen([UVCDYNCTRL_LOC, "-s", PAN_COMMAND, "--", str(amt)], stdout=subprocess.PIPE)
+        result = subprocess.Popen([UVCDYNCTRL_LOC, "-s", PAN_REL, "--", str(amt)], stdout=subprocess.PIPE)
         if (self.debug):
             printProcessResult("Panning right", result)
 		
@@ -118,7 +118,7 @@ class OrbitWebcam(object):
         """
         """
         print(PAN_RESET)
-        result = subprocess.Popen([UVCDYNCTRL_LOC, "-s", PAN_RESET, "3"], stdout=subprocess.PIPE)
+        result = subprocess.Popen([UVCDYNCTRL_LOC, "-s", TILT_REL, "3"], stdout=subprocess.PIPE)
         cs.pan = 0		
         if (self.debug):
             printProcessResult("Resetting Pan", result)
