@@ -20,33 +20,31 @@ def orbitTest(camstate):
     orbit.resetTilt(camstate)
     print(camstate)
     time.sleep(5)
-    print("-------------------------------------- \n")
+
 
     print(" --- Reset Pan ---------------- ")
     orbit.resetPan(camstate)
     print(camstate)
     time.sleep(5)
-    print("-------------------------------------- \n")
+    
 
     print(" --- Testing LED Mode ---------------- ")
     print(" --- LED On ---")
     orbit.ledMode(camstate, LED_ON)
     print(camstate)
     time.sleep(5)
-    print("------------------\n")
+    
 
     print(" --- LED Blink --- ")
     orbit.ledMode(camstate, LED_BLINK)
     print(camstate)
     time.sleep(5)
-    print("------------------\n")
+
 
     print(" --- LED Off ---- ")
     orbit.ledMode(camstate, LED_OFF)
     print(camstate)
     time.sleep(5)
-    print("------------------\n")
-    print("-------------------------------------- \n")
 
 
 def main():

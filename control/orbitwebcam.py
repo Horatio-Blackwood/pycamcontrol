@@ -27,10 +27,10 @@ TILT_UP_MAX = -1920
 TILT_DOWN_MAX = 1920
 
 # LED States
-LED_OFF = "0"
-LED_ON = "1"
-LED_BLINK = "2"
-LED_AUTO = "3"
+LED_OFF = 0
+LED_ON = 1
+LED_BLINK = 2
+LED_AUTO = 3
 
 class OrbitWebcam(object):
     """ A class that represents a Logitech Orbit AF webcam.  This class 
@@ -133,11 +133,9 @@ class OrbitWebcam(object):
                          "0", "1", "2" or "3" meaning OFF, ON, BLINK or AUTO
                          respectively.
         """
-        if (option != LED_ON and 
-        option != LED_OFF and 
-        option != LED_BLINK and 
-        option != LED_AUTO):
-            raise ValueError("Parameter 'option' must be a string representing a number between 0 and 3.  Value was:  " + option)
+        if (option != LED_ON and option != LED_OFF and 
+        option != LED_BLINK and option != LED_AUTO):
+            raise ValueError("Parameter 'option' must between 0 and 3.  Value was:  " + str(option))
 
         result = subprocess.Popen([UVCDYNCTRL_LOC, "-s", "LED1 Mode", str(option)], stdout=subprocess.PIPE)
         cs.ledState = option
