@@ -32,7 +32,8 @@ LED_ON = 1
 LED_BLINK = 2
 LED_AUTO = 3
 
-class OrbitWebcam(object):
+
+class Webcam(object):
     """ A class that represents a Logitech Orbit AF webcam.  This class 
         provides methods to control this particular webcam.
     """
